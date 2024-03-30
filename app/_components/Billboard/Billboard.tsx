@@ -106,7 +106,7 @@ const Billboard: React.FC = () => {
                             hover:bg-opacity-20
                             transition
                             '>
-                                <AiOutlineInfoCircle className='mr-1'/>
+                                <AiOutlineInfoCircle className='mr-1 '/> 
                                 More Info 
                             </button>
                         </div>
