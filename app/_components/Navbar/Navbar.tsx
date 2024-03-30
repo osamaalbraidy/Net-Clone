@@ -1,5 +1,6 @@
 'use client'
-
+import logo from '@/public/images/logo.png'
+import defaultBlue from '@/public/images/default-blue.png'
 import { useCallback, useState, MouseEvent, useEffect } from "react"
 import MobileMenu from "../MobileMenu/MobileMenu"
 import NavbarItem from "../NavbarItem/NavbarItem"
@@ -54,7 +55,7 @@ const Navbar = () => {
                 ${showBackground ? 'bg-zinc-900 bg-opacity-90' : ''}
             `}
             >
-                <Image src="/images/logo.png" width={100} height={26} alt="" className="h-4 lg:h-7" />
+                <Image src={logo} width={100} height={26} alt="" className="h-4 lg:h-7" />
                 <div
                     className="
                 flex-row
@@ -99,7 +100,7 @@ const Navbar = () => {
                     </div>
                     <div onClick={toggleAccountMenu} className="flex flex-row items-center gap-2 cursor-pointer relative">
                         <div className="w-6 h-6 lg:w-10 lg:h-10 rounded-md overflow-hidden">
-                            <Image height={100} width={100} src="/images/default-blue.png" alt="" />
+                            <Image height={100} width={100} src={defaultBlue} alt="" />
                         </div>
                         <BsChevronDown className={`text-white transition ${showAccountMenu ? 'transform rotate-180' : ''}`} />
                         <AccountMenu visible={showAccountMenu} />
