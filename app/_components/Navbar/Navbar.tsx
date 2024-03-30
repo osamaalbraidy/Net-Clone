@@ -1,15 +1,17 @@
 'use client'
 
-import { useCallback, useState, MouseEvent } from "react"
+import { useCallback, useState, MouseEvent, useEffect } from "react"
 import MobileMenu from "../MobileMenu/MobileMenu"
 import NavbarItem from "../NavbarItem/NavbarItem"
 import { BsChevronDown, BsSearch, BsBell } from "react-icons/bs"
 import AccountMenu from "../AccountMenu/AccountMenu"
 
+const TOP_OFFSET = 66;
 
 const Navbar = () => {
     const [showMobileMenu, setShoMobileMenu] = useState(false);
-    const [showAccountMenu, setShoAccountMenu] = useState(false);
+    const [showAccountMenu, setShowAccountMenu] = useState(false);
+    const [showBackground, setShowBackground] = useState(false);
 
     const toggleMobileMenu = useCallback((event: MouseEvent<HTMLDivElement>) => {
         event.preventDefault();
@@ -18,13 +20,28 @@ const Navbar = () => {
 
     const toggleAccountMenu = useCallback((event: MouseEvent<HTMLDivElement>) => {
         event.preventDefault();
-        setShoAccountMenu((prevState) => !prevState);
+        setShowAccountMenu((prevState) => !prevState);
     }, []);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY >= TOP_OFFSET) {
+                setShowBackground(true);
+            } else {
+                setShowBackground(false);
+            }
+        }
+        window.addEventListener('scroll', handleScroll)
+
+        return () =>{
+            window.removeEventListener('scroll', handleScroll)
+        }
+    }, [])
+
     return (
-        <nav className="w-full fixed z-40">
+        <nav className={`w-full fixed z-40 `}>
             <div
-                className="
+                className={`
                 px-4
                 md-px-16
                 py-6
@@ -33,9 +50,8 @@ const Navbar = () => {
                 items-center
                 transition
                 duration-500
-                bg-zinc-900
-                bg-opacity-90
-            "
+                ${showBackground ? 'bg-zinc-900 bg-opacity-90' : ''}
+            `}
             >
                 <img src="/images/logo.png" alt="" className="h-4 lg:h-7" />
                 <div
@@ -80,7 +96,7 @@ const Navbar = () => {
                     <div className="text-gray-200 hover:text-gray-300 cursor-pointer transition">
                         <BsBell />
                     </div>
-                    <div  onClick={toggleAccountMenu} className="flex flex-row items-center gap-2 cursor-pointer relative">
+                    <div onClick={toggleAccountMenu} className="flex flex-row items-center gap-2 cursor-pointer relative">
                         <div className="w-6 h-6 lg:w-10 lg:h-10 rounded-md overflow-hidden">
                             <img src="/images/default-blue.png" alt="" />
                         </div>
