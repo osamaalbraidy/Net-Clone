@@ -11,9 +11,9 @@ import Image from "next/image"
 const TOP_OFFSET = 66;
 
 const Navbar = () => {
-    const [showMobileMenu, setShoMobileMenu] = useState(false);
     const [showAccountMenu, setShowAccountMenu] = useState(false);
     const [showBackground, setShowBackground] = useState(false);
+    const [showMobileMenu, setShoMobileMenu] = useState(false);
 
     const toggleMobileMenu = useCallback((event: MouseEvent<HTMLDivElement>) => {
         event.preventDefault();
@@ -45,7 +45,7 @@ const Navbar = () => {
             <div
                 className={`
                 px-4
-                md-px-16
+                md:px-16
                 py-6
                 flex
                 flex-row

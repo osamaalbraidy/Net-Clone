@@ -2,7 +2,6 @@
 import React, { useCallback, useState } from 'react'
 import Input from '../Input/Input';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 const AuthInputs = () => {
     const [username, setUsername] = useState('');
